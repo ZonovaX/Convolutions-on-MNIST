@@ -17,6 +17,11 @@ deep linear neural networks.](https://arxiv.org/pdf/1312.6120.pdf) This is done 
 We consider 2 convolution and 3 convolution models, with ReLU nonlinearity, connecting at the end to a final linear FC layer. FC layers are parameter intensive and scale with the size of the image being output by the convolutional layers. To reduce the number of parameters in the FC, one would like to reduce the image output by the convolutional layers. Two obvious methods of doing this are with pooling and by increasing the stride on the CNN's. Here we compare these two methods. 
 
 ### CNN's with learning rate of 0.001:
-The results show that increasing the stride leads to better training and better accuracy than using pooling. The two and three convolutional layer models (each layer has stride 2) perform similarly, despite the 3 layer model having having 15% fewer parameters. 
-
+The results show that increasing the stride leads to better training and better accuracy than using pooling. The two and three convolutional layer models (each layer has stride 2) perform similarly, despite the 3 layer model having having 15% fewer parameters. <br>
+<br>
+Models:<br>
+The grey line is with 2 conv layers with stride 1 and then 4-pooling into FC, ~6.5k param <br>
+The orange line is with 2 conv layers with stride 2 and no pooling into FC, ~6.5k param<br>
+The white line is with 3 conv layers with stride 2 and no pooling into FC, ~5.5k param<br>
 ![image](https://user-images.githubusercontent.com/12636792/230689552-408d9c98-fd87-4016-8850-28519b208476.png)
+![image](https://user-images.githubusercontent.com/12636792/230691026-655b5380-1df6-4466-8ae0-76e21f1bfee5.png)
