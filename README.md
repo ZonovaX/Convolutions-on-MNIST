@@ -25,3 +25,14 @@ The orange line is with 2 conv layers with stride 2 and no pooling into FC, ~6.5
 The white line is with 3 conv layers with stride 2 and no pooling into FC, ~5.5k param<br>
 ![image](https://user-images.githubusercontent.com/12636792/230689552-408d9c98-fd87-4016-8850-28519b208476.png)
 ![image](https://user-images.githubusercontent.com/12636792/230691026-655b5380-1df6-4466-8ae0-76e21f1bfee5.png)
+
+
+### CNN's with learning rate of 0.05:
+Using this larger learning rate led to much better trained models across the board, and interestingly it led to the model with pooling actually becoming more effective than the models with larger stride. <br>
+Models: <br>
+The darker blue line is with 3 conv layers with stride 2 and no pooling into FC ~ 5.5k param <br>
+The lighe blue line is with 2 conv layers with stride 2 and no pooling into FC ~ 6.5k param <br>
+The pink line is with 2 conv layers with stride 1 and then 4 pooling into an FC ~ 6.5k param <br>
+
+![image](https://user-images.githubusercontent.com/12636792/230695340-267ad0de-16df-4d0a-a846-c1379e38d296.png)
+![image](https://user-images.githubusercontent.com/12636792/230695360-da8179e6-e6c4-4cec-bac8-7118a76c60ce.png)
