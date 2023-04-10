@@ -18,7 +18,7 @@ We consider 2 convolution and 3 convolution models, with ReLU nonlinearity, conn
 
 Side note, models without final FC layers, which have the correct final dimensionality purely using convolutional layers with appropriately picked strides, performed significantly worse than models with final FC layers. 
 
-### CNN's with learning rate of 0.001:
+#### CNN's with learning rate of 0.001:
 The results show that increasing the stride leads to better training and better accuracy than using Avg Pooling. The two and three convolutional layer models (each layer has stride 2) perform similarly, despite the 3 layer model having having 15% fewer parameters. However, using Max Pooling achieves much higher accuracy, even with this small learning rate.<br>
 <br>
 Models:<br>
@@ -29,9 +29,7 @@ The grey line is with 3 conv layers with stride 2 and no pooling into FC, ~5.5k 
 ![image](https://user-images.githubusercontent.com/12636792/230748239-261e3f41-866a-4a35-84e2-33dd674ff233.png)
 ![image](https://user-images.githubusercontent.com/12636792/230748221-8aab21f6-be65-421a-9bd6-9205f509a45d.png)
 
-
-
-### CNN's with learning rate of 0.05:
+#### CNN's with learning rate of 0.05:
 Using this larger learning rate led to much better trained models across the board. Interestingly it led to the model with Avg Pooling actually becoming more effective than the models with larger stride, ultimately being equally as effective as Max Pooling. However, Max Pooling trained faster.  <br>
 Models: <br>
 The light blue line is with 3 conv layers with stride 2 and no pooling into FC ~ 5.5k param <br>
@@ -40,4 +38,14 @@ The dark blue line is with 2 conv layers with stride 1 and then AvgPool(4) into 
 The grey line is with 2 conv layers with stride 1 and then MaxPool(4) into an FC ~ 6.5k param <br>
 ![image](https://user-images.githubusercontent.com/12636792/230748350-67b53db9-4756-4fcb-a31e-7428fdc97d67.png)
 ![image](https://user-images.githubusercontent.com/12636792/230748341-1d112a84-954a-46a1-8039-709856bf43b4.png)
+
+## Parallel 3x3 and 5x5 Convolutional Layers vs Sequential Convolutional Layers
+Naively, if one has two 3x3 convolutional layers in a row, you can capture patterns that are around 5x5 in size. Is there any benefit to having different kernal sizes within the same layer? Note, since the images here are only 28x28, there's very little room to increase the size of the kernal. The parallel convolutional models tried here are: <br>
+(Pink line) A layer with parallel 3x3 and 5x5 convolutions with stride 2 and then MaxPool(3) into an FC ~ 5.5k param <br>
+(Orange line) A 3x3 with stride 1 -> a 3x3 with stride 2 in parallel with a 5x5 with stride 2 -> a 3x3 with stride 1. These parallel parts each end with a maxpool(3) and then are connected to an FC ~ 6.6k param <br>
+
+In the following plots, we compare these parallel models with the two previous 2-layer 3x3 stride 1 models which ended with AvgPool and MaxPool (Blue and Gray lines). We see that the parallel models do not achieve as good results as the sequential models
+![image](https://user-images.githubusercontent.com/12636792/230802417-5638e2ca-166e-4b26-acfc-edd88c4ecc3f.png)
+![image](https://user-images.githubusercontent.com/12636792/230802396-d55a8552-7404-42ab-b1b4-2a943c65c4c0.png)
+
 
