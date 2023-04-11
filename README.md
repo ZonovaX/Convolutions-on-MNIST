@@ -48,4 +48,10 @@ In the following plots, we compare these parallel models with the two previous 2
 ![image](https://user-images.githubusercontent.com/12636792/230802417-5638e2ca-166e-4b26-acfc-edd88c4ecc3f.png)
 ![image](https://user-images.githubusercontent.com/12636792/230802396-d55a8552-7404-42ab-b1b4-2a943c65c4c0.png)
 
+## Inhibitive Nonlinearities, Inspired by GABA.
+Neurons in the brain fire a variety of chemicals to control activation. As a simplistic model, we can classify these chemicals as either activation enhancing or inhibitting; GABA is an example of an inhibitor. Typical NN architectures add nonlinearity by using ReLU as the activation function, which activates for positive inputs, and outputs strictly positive values. In the brain, approximately 20% of neurons fire inhibitive chemicals; to simulate this in a neural network, let's consider a "negative" ReLU. here are two ways one might implement this. A normal ReLU follows the rules ReLU(x) = {x<0: 0, x>0: x}. We can consider a negative ReLU nReLU(x) = {x<0: 0, x>0: -x} or nReLU(x) = {x<0: x, x>0: 0}. <br>
+
+The base network consists of two convolutional layers with kernal size 3 and stride 1 + ReLU's, connecting to a FC layer of size 100 + ReLU into a FC of size 10. We modify this by changing the 20% of the ReLU's between the two FC layers into nReLU's. This naive change didn't lead to a discernable difference in the performance of the networks; all three netowkrs performed equally well. Future testing of inhibitive activation functions should clamp the weights themselves to be strictly positive or negative, and could be deeper in terms of FC layers. 
+![image](https://user-images.githubusercontent.com/12636792/231199108-9c204f89-d959-40ae-b9b5-75d6605897d1.png)
+![image](https://user-images.githubusercontent.com/12636792/231199037-246f4dcd-3eb2-4c4e-a28e-0b8e6331527b.png)
 
